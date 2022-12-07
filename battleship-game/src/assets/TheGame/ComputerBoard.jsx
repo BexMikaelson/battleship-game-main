@@ -24,6 +24,23 @@ export const ComputerBoard = ({
     generateEmptyLayout()
   );
 
+  //  Add hits dealt by player
+  compLayout = hitsByPlayer.reduce(
+    (prevLayout, currentHit) =>
+      putEntityInLayout(prevLayout, currentHit, currentHit.type),
+    compLayout
+  );
+
+  compLayout = computerShips.reduce(
+    (prevLayout, currentShip) =>
+      currentShip.sunk
+        ? putEntityInLayout(prevLayout, currentShip, SQUARE_STATE.ship_sunk)
+        : prevLayout,
+    compLayout
+  );
+
+ 
+
 
   return (
     <div>
