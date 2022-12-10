@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const PlayerTips = ({
-  gameState,
   hitsbyPlayer,
   hitsByComputer,
   startAgain,
@@ -24,9 +23,27 @@ export const PlayerTips = ({
     </div>
   );
 
-  
+  let tipsPanel = (
+    <div>
+      <div className="tip-box-title">Stats</div>
+      <div id="firing-info">
+        <ul>
+          <li>{numberOfSuccessfulHits} successful hits</li>
+          <li>{accuracyScore > 0 ? `${accuracyScore}%` : `0%`} accuracy </li>
+        </ul>
+        <p className="player-tip">The first to sink all 5 opponent ships wins.</p>
+        <p className="restart" onClick={startAgain}>
+          Restart
+        </p>
+      </div>
+    </div>
+  );
 
   return (
-  <div></div>
+    <div id="player-tips">
+      {numberOfSuccessfulHits === 17 || succesfulComputerHits === 17
+        ? gameOverPanel
+        : tipsPanel}
+    </div>
   );
 };
