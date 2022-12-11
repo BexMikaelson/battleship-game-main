@@ -1,37 +1,286 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
-/* h1, h2, h3, h4, h5, h6 {
-	margin: 0.75em;
-} */
-
 /* base styles */
-* {
+body{
   margin: 0;
   font-family: "Quicksand";
   color: #333;
 }
 .navbar {
-  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: black;
-  margin: 0 auto;
-  
 }
 .navbar h1 {
   color: #35d5f1;
   font-size: 3rem;
-  
 }
-/* .navbar .links {
-  margin-left: auto;
+
+/* body, */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.navbar a {
-  margin-left: 16px;
-  text-decoration: none;
-  padding: 6px;
+
+main,
+section {
+  text-align: center;
 }
-.navbar a:hover {
-  color: #f1356d;
-} */
+
+main {
+  padding: 40px;
+}
+
+#game-screen {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media screen and (max-width: 1100px) {
+  #game-screen {
+    flex-direction: column;
+  }
+}
+
+/* Box containing ships and tips */
+#available-ships,
+#player-tips {
+  width: 200px;
+  max-height: 500px;
+  padding: var(--small-space);
+  font-family: var(--headlines);
+  text-align: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tip-box-title {
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+.player-tip,
+#firing-info {
+  margin-top: var(--small-space);
+  font-family: var(--regular);
+  text-transform: none;
+  color: gray;
+}
+
+.restart {
+  font-family: var(--regular);
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: underline;
+  margin: var(--small-space);
+}
+
+#game-over {
+  font-size: 30px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+/* BUTTONS */
+
+button {
+  width: 170px;
+  height: 50px;
+  border-radius: 3px;
+  font-size: 16px;
+  margin: var(--small-space);
+  background-color: #35d5f1;
+  color: var(--oc-gray-1);
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:active {
+  position: relative;
+  top: 1px;
+}
+
+/* BOARD  */
+
+.board {
+  width: 400px;
+  height: 400px;
+  border: 2px solid gray;
+  margin: 1em 2em 2em 1em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.board div {
+  width: 10%;
+  height: 10%;
+  box-sizing: border-box;
+  background:lightgray;
+  border: 1px solid gray;
+  cursor: crosshair;
+  transition: background-color 100ms ease-in-out;
+}
+
+/* Option 1 */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* Option 2 */
+@keyframes shake {
+  from {
+    transform: translate(30%, 17%);
+  }
+
+  to {
+    transform: translate(-30%, -17%);
+  }
+}
+
+/* SQUARE COLORS */
+
+/* Empty */
+.board .empty {
+  background-color: lightgray;
+}
+.board .empty:hover {
+  background-color: yellow;
+}
+
+/* Ship */
+
+.board .ship {
+  background-color: rgb(129, 64, 176);
+  border: 1px solid indigo;
+}
+
+.board .ship:hover {
+  background-color: rgb(129, 64, 176);
+}
+
+/* Hit  */
+
+.board .hit {
+  background-color: darkred;
+  border: 1px solid red;
+}
+
+/* Miss */
+
+.board .miss {
+  background-color: black;
+  border: 1px solid gray;
+}
+
+/* Sunk ship */
+
+.board .ship-sunk {
+  background-color: gray;
+  border: 1px solid black;
+  animation: shake 50ms 6 alternate backwards;
+}
+
+/* Forbidden square  */
+
+.board .forbidden {
+  background-color: red;
+  border: 1px solid red;
+}
+
+:root {
+  --micro-space: 0.3em;
+  --small-space: 1em;
+  --medium-space: 2em;
+}
+
+/* REPLICAS  */
+
+#replica-fleet {
+  padding: var(--small-space);
+}
+
+#replica-fleet > * + * {
+  margin-top: var(--small-space);
+}
+
+.replica,
+.replica-squares {
+  display: flex;
+  flex-direction: row;
+}
+
+.replica {
+  width: 150px;
+  height: 35px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #35d5f1;
+  border-radius: 3px;
+  padding: 5px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px hsla(0, 0%, 0.2);
+}
+
+.replica:hover {
+  background-color: tomato;
+  opacity: 0.9;
+}
+
+.replica:active {
+  position: relative;
+  top: 1px;
+}
+
+.placing {
+  background-color: indigo;
+}
+
+.placing:hover {
+  background-color: indigo;
+}
+
+/* Firing info */
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .board{
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .board{
+    width: 230px;
+    height: 230px;
+
+  }
+}
+
+.player-title {
+  text-align: center;
+}
