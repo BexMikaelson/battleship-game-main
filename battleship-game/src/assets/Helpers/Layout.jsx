@@ -68,7 +68,6 @@ export const entityIndices2 = (entity) => {
   return indices;
 };
 
-// Checks the ship doesn't overflow
 export const isWithinBounds = (entity) => {
   return (
     (entity.orientation === 'vertical' &&
@@ -182,7 +181,6 @@ export const getNeighbors = (coords) => {
 
   let neighbors = [];
 
-  // coords.y === 0;
   if (firstRow) {
     neighbors.push(
       { x: coords.x + 1, y: coords.y },
@@ -191,7 +189,6 @@ export const getNeighbors = (coords) => {
     );
   }
 
-  // coords.y === 9;
   if (lastRow) {
     neighbors.push(
       { x: coords.x + 1, y: coords.y },
@@ -199,30 +196,29 @@ export const getNeighbors = (coords) => {
       { x: coords.x, y: coords.y - 1 }
     );
   }
-  // coords.x === 0
+  
   if (firstColumn) {
     neighbors.push(
-      { x: coords.x + 1, y: coords.y }, // right
-      { x: coords.x, y: coords.y + 1 }, // down
-      { x: coords.x, y: coords.y - 1 } // up
+      { x: coords.x + 1, y: coords.y },
+      { x: coords.x, y: coords.y + 1 },
+      { x: coords.x, y: coords.y - 1 }
     );
   }
 
-  // coords.x === 9
   if (lastColumn) {
     neighbors.push(
-      { x: coords.x - 1, y: coords.y }, // left
-      { x: coords.x, y: coords.y + 1 }, // down
-      { x: coords.x, y: coords.y - 1 } // up
+      { x: coords.x - 1, y: coords.y },
+      { x: coords.x, y: coords.y + 1 },
+      { x: coords.x, y: coords.y - 1 }
     );
   }
 
   if (!lastColumn || !firstColumn || !lastRow || !firstRow) {
     neighbors.push(
-      { x: coords.x - 1, y: coords.y }, // left
-      { x: coords.x + 1, y: coords.y }, // right
-      { x: coords.x, y: coords.y - 1 }, // up
-      { x: coords.x, y: coords.y + 1 } // down
+      { x: coords.x - 1, y: coords.y },
+      { x: coords.x + 1, y: coords.y },
+      { x: coords.x, y: coords.y - 1 },
+      { x: coords.x, y: coords.y + 1 }
     );
   }
 

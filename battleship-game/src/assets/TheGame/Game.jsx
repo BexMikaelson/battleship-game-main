@@ -126,13 +126,13 @@ const AVAILABLE_SHIPS = [
     const sunkShipsAfter = sunkShips.filter((ship) => ship.sunk).length;
     const sunkShipsBefore = placedShips.filter((ship) => ship.sunk).length;
     if (sunkShipsAfter > sunkShipsBefore) {
-      // playSound('sunk');
+      
     }
     setPlacedShips(sunkShips);
     setHitsByComputer(computerHits);
   };
 
-  // Change to computer turn, check if game over and stop if yes; if not fire into an eligible square
+ 
   const handleComputerTurn = () => {
     changeTurn();
 
@@ -140,7 +140,6 @@ const AVAILABLE_SHIPS = [
       return;
     }
 
-    // Recreate layout to get eligible squares
     let layout = placedShips.reduce(
       (prevLayout, currentShip) =>
         putEntityInLayout(prevLayout, currentShip, SQUARE_STATE.ship),
@@ -172,7 +171,6 @@ const AVAILABLE_SHIPS = [
       .flatMap((hit) => getNeighbors(hit.position))
       .filter((idx) => layout[idx] === 'empty' || layout[idx] === 'ship');
 
-    // Until there's a successful hit
     if (potentialTargets.length === 0) {
       let layoutIndices = layout.map(( idx) => idx);
       potentialTargets = layoutIndices.filter(
@@ -192,7 +190,6 @@ const AVAILABLE_SHIPS = [
 
   // *** END GAME ***
 
-  // Check if either player or computer ended the game
   const checkIfGameOver = () => {
     let successfulPlayerHits = hitsByPlayer.filter((hit) => hit.type === 'hit').length;
     let successfulComputerHits = hitsByComputer.filter((hit) => hit.type === 'hit')

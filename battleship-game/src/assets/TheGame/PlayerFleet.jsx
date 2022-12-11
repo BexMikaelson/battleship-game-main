@@ -11,7 +11,6 @@ export const PlayerFleet = ({
 }) => {
   let shipsLeft = availableShips.map((ship) => ship.name);
 
-  // For every ship still available, return a Replica Box with the ship's name and as many squares as its length
   let shipReplicaBoxes = shipsLeft.map((shipName) => (
     <ReplicaBox
       selectShip={selectShip}

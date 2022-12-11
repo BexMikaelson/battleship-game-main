@@ -17,14 +17,13 @@ export const ComputerBoard = ({
   checkIfGameOver,
   setComputerShips,
 }) => {
-  // Ships on an empty layout
+  
   let compLayout = computerShips.reduce(
     (prevLayout, currentShip) =>
       putEntityInLayout(prevLayout, currentShip, SQUARE_STATE.ship),
     generateEmptyLayout()
   );
 
-  //  Add hits dealt by player
   compLayout = hitsByPlayer.reduce(
     (prevLayout, currentHit) =>
       putEntityInLayout(prevLayout, currentHit, currentHit.type),
@@ -39,7 +38,6 @@ export const ComputerBoard = ({
     compLayout
   );
 
-   // Check what's at the square and decide what next
    const fireTorpedo = (index) => {
     if (compLayout[index] === 'ship') {
       const newHits = [
@@ -76,7 +74,7 @@ export const ComputerBoard = ({
   let compSquares = compLayout.map((square, index) => {
     return (
       <div
-        // Only display hit, miss, or sunk ship
+        
         className={
           stateToClass[square] === 'hit' ||
           stateToClass[square] === 'miss' ||
