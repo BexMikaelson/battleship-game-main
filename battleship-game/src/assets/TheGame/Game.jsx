@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GameView } from './GameView';
+import  GameView  from '../TheGame/GameView';
 import {
   placeAllComputerShips,
   SQUARE_STATE,
@@ -14,6 +14,11 @@ import {
 
 const AVAILABLE_SHIPS = [
   {
+    name: 'carrier',
+    length: 5,
+    placed: null,
+  },
+  {
     name: 'battleship',
     length: 4,
     placed: null,
@@ -25,7 +30,7 @@ const AVAILABLE_SHIPS = [
   },
   {
     name: 'submarine',
-    length: 2,
+    length: 3,
     placed: null,
   },
   {
@@ -123,16 +128,11 @@ const AVAILABLE_SHIPS = [
       ];
     }
     const sunkShips = updateSunkShips(computerHits, placedShips);
-    const sunkShipsAfter = sunkShips.filter((ship) => ship.sunk).length;
-    const sunkShipsBefore = placedShips.filter((ship) => ship.sunk).length;
-    if (sunkShipsAfter > sunkShipsBefore) {
-      
-    }
+    
     setPlacedShips(sunkShips);
     setHitsByComputer(computerHits);
   };
 
- 
   const handleComputerTurn = () => {
     changeTurn();
 
@@ -172,7 +172,7 @@ const AVAILABLE_SHIPS = [
       .filter((idx) => layout[idx] === 'empty' || layout[idx] === 'ship');
 
     if (potentialTargets.length === 0) {
-      let layoutIndices = layout.map(( idx) => idx);
+      let layoutIndices = layout.map((item, idx) => idx);
       potentialTargets = layoutIndices.filter(
         (index) => layout[index] === 'ship' || layout[index] === 'empty'
       );
@@ -223,7 +223,8 @@ const AVAILABLE_SHIPS = [
   };
 
   return (
-    <>
+    <React.Fragment>
+      
       <GameView
         availableShips={availableShips}
         selectShip={selectShip}
@@ -246,7 +247,8 @@ const AVAILABLE_SHIPS = [
         winner={winner}
         setComputerShips={setComputerShips}
       />
-    </>
+    </React.Fragment>
   );
 };
-export default Game;
+
+export default Game 
