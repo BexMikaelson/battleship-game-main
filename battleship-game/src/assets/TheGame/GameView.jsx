@@ -5,7 +5,7 @@ import { PlayerBoard } from './PlayerBoard';
 import { ComputerBoard } from './ComputerBoard';
 import { PlayerTips } from './PlayerTips';
 
-export const GameView = ({
+const GameView = ({
   availableShips,
   selectShip,
   currentlyPlacing,
@@ -69,3 +69,5 @@ export const GameView = ({
     </section>
   );
 };
+
+export default GameView
